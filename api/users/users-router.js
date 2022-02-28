@@ -22,7 +22,14 @@ router.post("/login", (req, res, next) => {
 router.get("/logout", (req, res, next) => {});
 
 router.get("/", (req, res) => {
-  console.log("its working");
+  model
+    .get()
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((err) => {
+      res.json(err.message);
+    });
 });
 
 module.exports = router;
