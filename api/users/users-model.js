@@ -13,7 +13,7 @@ async function getByFilter(filter) {
 }
 
 async function addUser(user) {
-  const [user_id] = await db("users").insert(user);
+  const [id] = await db("users").insert(user);
 
   return getById(id);
 }
