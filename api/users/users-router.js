@@ -16,9 +16,7 @@ router.post("/register", (req, res, next) => {
       res.json(err.message);
     });
 });
-router.post("/login", (req, res, next) => {
-  const { username, password } = req.body;
-});
+router.post("/login", (req, res, next) => {});
 router.get("/logout", (req, res, next) => {});
 
 router.get("/", (req, res) => {
