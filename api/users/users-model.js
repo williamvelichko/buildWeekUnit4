@@ -13,9 +13,9 @@ async function getByFilter(filter) {
 }
 
 async function addUser(user) {
-  const [id] = await db("users").insert(user);
+  const [result] = await db("users").insert(user).returning("*");
 
-  return getById(id);
+  return result;
 }
 
 async function removeUser(user_id) {
