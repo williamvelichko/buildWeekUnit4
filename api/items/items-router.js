@@ -36,6 +36,15 @@ router.post("/", (req, res) => {
 });
 router.put("/:item_id", (req, res) => {
   const { item_id } = req.params;
+  const item = req.body;
+  model
+    .updateItem(item_id, { item })
+    .then((item) => {
+      res.status(200).json(item);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 router.delete("/", (req, res) => {});
 

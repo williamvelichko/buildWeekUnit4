@@ -12,13 +12,13 @@ async function addItem(item) {
   const [result] = await db("items").insert(item).returning("*");
   return result;
 }
-async function updateItem(item_id, item) {
+async function updateItem(item_id, { item }) {
   const result = await db("items").where("item_id", item_id).update({
     name: item.name,
     description: item.description,
     price: item.price,
   });
-  return result;
+  return getItemsById(item_id);
 }
 
 function deleteItem(item_id) {
