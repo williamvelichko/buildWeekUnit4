@@ -21,7 +21,17 @@ const usernameExists = async (req, res, next) => {
   }
 };
 
+const validateLogin = async (req, res, next) => {
+  const username = req.body.username;
+  if (!username || !req.body.password) {
+    res.status(401).json({ message: "username and password required" });
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   validateRegister,
   usernameExists,
+  validateLogin,
 };
