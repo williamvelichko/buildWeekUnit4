@@ -1,6 +1,7 @@
 const model = require("./items-model");
 
 const router = require("express").Router();
+const { validateId, validateBody } = require("./items-middleware");
 
 router.get("/", (req, res) => {
   model
@@ -12,7 +13,7 @@ router.get("/", (req, res) => {
       res.json(err);
     });
 });
-router.get("/:item_id", (req, res) => {
+router.get("/:item_id", validateId, (req, res) => {
   const { item_id } = req.params;
   model
     .getItemsById(item_id)
@@ -23,7 +24,7 @@ router.get("/:item_id", (req, res) => {
       res.json(err);
     });
 });
-router.post("/", (req, res) => {
+router.post("/", validateBody, (req, res) => {
   const item = req.body;
   model
     .addItem(item)
@@ -34,7 +35,7 @@ router.post("/", (req, res) => {
       res.json(err);
     });
 });
-router.put("/:item_id", (req, res) => {
+router.put("/:item_id", validateId, validateBody, (req, res) => {
   const { item_id } = req.params;
   const item = req.body;
   model
@@ -46,7 +47,7 @@ router.put("/:item_id", (req, res) => {
       res.json(err);
     });
 });
-router.delete("/:item_id", (req, res) => {
+router.delete("/:item_id", validateId, (req, res) => {
   const { item_id } = req.params;
   model
     .deleteItem(item_id)
