@@ -46,6 +46,16 @@ router.put("/:item_id", (req, res) => {
       res.json(err);
     });
 });
-router.delete("/", (req, res) => {});
+router.delete("/:item_id", (req, res) => {
+  const { item_id } = req.params;
+  model
+    .deleteItem(item_id)
+    .then((item) => {
+      res.status(200).json(item);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 module.exports = router;

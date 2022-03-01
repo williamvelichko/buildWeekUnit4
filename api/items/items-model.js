@@ -1,7 +1,7 @@
 const db = require("./../data/db-config");
 
 function getItems() {
-  return db("items");
+  return db("items").orderBy("item_id");
 }
 
 function getItemsById(item_id) {
@@ -21,8 +21,10 @@ async function updateItem(item_id, { item }) {
   return getItemsById(item_id);
 }
 
-function deleteItem(item_id) {
-  return db("items").where("item_id", item_id).del();
+async function deleteItem(item_id) {
+  const item = await getItemsById(item_id);
+  const result = await db("items").where("item_id", item_id).del();
+  return item;
 }
 
 module.exports = {
