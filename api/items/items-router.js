@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
       res.json(items);
     })
     .catch((err) => {
-      res.json(err);
+      res.json(err.message);
     });
 });
 router.get("/:item_id", validateId, (req, res) => {
