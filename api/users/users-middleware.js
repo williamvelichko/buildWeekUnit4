@@ -14,7 +14,7 @@ const validateRegister = async (req, res, next) => {
 const usernameExists = async (req, res, next) => {
   const username = req.body.username;
   const result = await model.getByFilter({ username });
-  if (result) {
+  if (result.length > 0) {
     res.status(401).json({ message: "username is already taken" });
   } else {
     next();

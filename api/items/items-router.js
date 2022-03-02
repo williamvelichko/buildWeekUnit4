@@ -21,7 +21,7 @@ router.get("/:item_id", validateId, (req, res) => {
       res.status(200).json(item);
     })
     .catch((err) => {
-      res.json(err);
+      res.json(err.message);
     });
 });
 router.post("/", validateBody, (req, res) => {
@@ -32,7 +32,7 @@ router.post("/", validateBody, (req, res) => {
       res.status(200).json(item);
     })
     .catch((err) => {
-      res.json(err);
+      res.json(err.message);
     });
 });
 router.put("/:item_id", validateId, validateBody, (req, res) => {
@@ -44,7 +44,7 @@ router.put("/:item_id", validateId, validateBody, (req, res) => {
       res.status(200).json(item);
     })
     .catch((err) => {
-      res.json(err);
+      res.json(err.message);
     });
 });
 router.delete("/:item_id", validateId, (req, res) => {
@@ -55,7 +55,7 @@ router.delete("/:item_id", validateId, (req, res) => {
       res.status(200).json(item);
     })
     .catch((err) => {
-      res.json(err);
+      res.json(err.message);
     });
 });
 
